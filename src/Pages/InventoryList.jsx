@@ -7,6 +7,7 @@ import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import { addDoc, doc, setDoc, updateDoc } from 'firebase/firestore';
 import { collection, deleteDoc, getDoc, getDocs } from 'firebase/firestore';
+import Header from '../Components/Header';
 
 function InventoryList() {
   const [show, setShow] = useState(false);
@@ -121,15 +122,17 @@ function InventoryList() {
   }, [refreshData]);
 
   return (
-    <div className="dashcontainer mx-auto text-center p-3">
+    <div style={{marginBottom:"130px"}}  className="dashcontainer mx-auto text-center p-3">
+      <Header/>
       <h1>Inventory List</h1>
       <Table className='table table-bordered table-hover  rounded  shadow mx-auto '>
         <thead className='table-info'>
           <tr >
-            <th style={{ color: 'black' }}>Name</th>
+            <th style={{ color: 'black' }}>Name of Product</th>
             <th>Description</th>
             <th>Quantity</th>
-            <th colSpan={'2'}>Actions</th>
+            <th>Price</th>
+            <th colSpan={'2'}></th>
           </tr>
         </thead>
         <tbody className='table-stripped'>
@@ -138,6 +141,7 @@ function InventoryList() {
               <td>{doc.data().name}</td>
               <td>{doc.data().description}</td>
               <td>{doc.data().quantity}</td>
+              <td>₹{doc.data().price}</td>
               <td onClick={() => editProduct(doc.id)}><i className="fa-regular fa-pen-to-square"></i></td>
               <td onClick={() => deleteProducts(doc.id)}><i className="fa-solid fa-trash"></i></td>
             </tr>
