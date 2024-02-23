@@ -19,7 +19,7 @@ function Login() {
     const user = userCredential.user;
     // ...
     console.log("login success")
-    navigate('/inventory')
+    navigate('/dashboard')
     
   })
   .catch((error) => {
