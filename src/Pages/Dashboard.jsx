@@ -43,8 +43,7 @@ function Dashboard() {
 
     return (
         <div >
-             <Header/>
-            <div style={{marginBottom:"130px"}} className="containerDashboard container p-5">
+             <Header/>            <div style={{marginBottom:"130px"}} className="containerDashboard container p-5">
               
                <h1 className='text-dark m-2' style={{ textShadow: "1px 1px 1px white" }}>Dashboard</h1>
                 <Row>

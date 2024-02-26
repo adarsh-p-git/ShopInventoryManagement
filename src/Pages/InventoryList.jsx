@@ -48,7 +48,14 @@ function InventoryList() {
       const productSnapshot = await getDoc(productRef);
       if (productSnapshot.exists()) {
         const productData = productSnapshot.data();
-        setFormData({ id: productId, ...productData });
+        // Update formData with the retrieved product data
+        setFormData({
+          id: productId,
+          name: productData.name,
+          description: productData.description,
+          price: productData.price,
+          quantity: productData.quantity
+        });
         handleShow(); // Show modal with product data to edit
       } else {
         console.error("Product not found!");
@@ -57,7 +64,7 @@ function InventoryList() {
       console.error("Error editing product:", error);
     }
   };
-
+  
   const addOrUpdateProduct = async (e) => {
     e.preventDefault();
     try {
@@ -176,7 +183,7 @@ function InventoryList() {
                 <Form.Control type="number" name="quantity" value={formData.quantity} onChange={handleChange} placeholder="Enter product quantity" required />
               </Form.Group>
               <Button className='my-2 ' variant="secondary" onClick={handleClose}>Close</Button>
-              <Button className='mx-2' variant="primary" type="submit">{formData.id ? "Submit Edit" : "Add"}</Button>
+              <Button className='m-2' variant="primary" type="submit">{formData.id ? "Submit Edit" : "Add"}</Button>
             </Form>
           </Modal.Body>
         </Modal>
